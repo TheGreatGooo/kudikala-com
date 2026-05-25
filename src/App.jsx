@@ -1,4 +1,13 @@
 function App() {
+  const asciiArt = `
+██████╗ ███████╗ █████╗ ██╗  ██╗ █████╗ ██╗     █████╗
+██╔══██╗██╔════╝██╔══██╗██║ ██╔╝██╔══██╗██║     ██╔══██╗
+██████╔╝█████╗  ███████║█████╔╝ ███████║██║     ███████║
+██╔══██╗██╔══╝  ██╔══██║██╔═██╗ ██╔══██║██║     ██╔══██║
+██║  ██║███████╗██║  ██║██║  ██╗██║  ██║███████╗██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+  `.trim();
+
   return (
     <div style={{
       fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif',
@@ -8,12 +17,21 @@ function App() {
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #ff9a56 0%, #ff6a88 50%, #ff99ac 100%)',
       color: 'white',
-      textAlign: 'center'
+      textAlign: 'center',
+      padding: '2rem'
     }}>
       <div>
-        <h1 style={{ fontSize: '2.5rem', margin: '0 0 1rem', fontWeight: 300, letterSpacing: '0.1em' }}>
-          KUDIKALA
-        </h1>
+        <pre style={{
+          fontFamily: '"Courier New", Courier, monospace',
+          fontSize: 'clamp(6px, 2vw, 14px)',
+          lineHeight: '1.1',
+          margin: '0 0 1.5rem',
+          whiteSpace: 'pre',
+          color: 'white',
+          textShadow: '0 2px 10px rgba(0,0,0,0.2)'
+        }}>
+          {asciiArt}
+        </pre>
         <p style={{ fontSize: '1.1rem', margin: '0 0 2rem', opacity: 0.95, fontWeight: 300 }}>
           The Kudikala Family Homepage
         </p>
