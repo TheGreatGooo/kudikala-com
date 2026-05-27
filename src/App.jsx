@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+
 const quotes = [
   { telugu: "కుటుంబం అంటే ప్రేమ, విశ్వాసం, మరియు ఒకరికొకరు సహాయం చేసుకోవడం", english: "Family is love, trust, and helping each other" },
   { telugu: "బంధాలు బలం, కుటుంబం శక్తి", english: "Relationships are strength, family is power" },
