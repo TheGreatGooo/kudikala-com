@@ -64,7 +64,17 @@ function App() {
   const shuffled = shuffle(quotes);
   const start = Math.floor(Math.random() * shuffled.length);
   const ordered = [...shuffled.slice(start), ...shuffled.slice(0, start)];
-  const randomQuote = ordered[Math.floor(Math.random() * ordered.length)];
+
+  const [quoteIdx, setQuoteIdx] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setQuoteIdx(prev => (prev + 1) % ordered.length);
+    }, 10000);
+    return () => clearInterval(timer);
+  }, [ordered.length]);
+
+  const current = ordered[quoteIdx % ordered.length];
 
   const asciiArt = `██╗  ██╗ ██╗   ██╗ ██████╗  ██╗ ██╗  ██╗  █████╗  ██╗       █████╗
  ██║ ██╔╝ ██║   ██║ ██╔══██╗ ██║ ██║ ██╔╝ ██╔══██╗ ██║      ██╔══██╗
@@ -80,7 +90,7 @@ function App() {
       justifyContent: 'center',
       alignItems: 'center',
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #faf3eb 0%, #f5e6d3 30%, #edd5b3 60%, #e8c9a0 100%)',
+      background: 'linear-gradient(135deg, #f0f7f0 0%, #e0efe0 30%, #d0e8d0 60%, #c0dfc0 100%)',
       position: 'relative',
       overflow: 'hidden'
     }}>
@@ -91,7 +101,7 @@ function App() {
         width: '400px',
         height: '400px',
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(255,200,150,0.3) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(144,200,144,0.3) 0%, transparent 70%)',
         pointerEvents: 'none'
       }} />
       <div style={{
@@ -101,7 +111,7 @@ function App() {
         width: '500px',
         height: '500px',
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(255,180,150,0.2) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(120,190,120,0.2) 0%, transparent 70%)',
         pointerEvents: 'none'
       }} />
 
@@ -114,13 +124,13 @@ function App() {
         borderRadius: '24px',
         backdropFilter: 'blur(20px)',
         border: '1px solid rgba(255,255,255,0.5)',
-        boxShadow: '0 20px 60px rgba(92,64,51,0.1), 0 1px 3px rgba(92,64,51,0.05)',
+        boxShadow: '0 20px 60px rgba(45,92,45,0.1), 0 1px 3px rgba(45,92,45,0.05)',
         textAlign: 'center'
       }}>
         <div style={{
           width: '60px',
           height: '3px',
-          background: 'linear-gradient(90deg, #d4a574, #c4956a)',
+          background: 'linear-gradient(90deg, #6aab6a, #4a8a4a)',
           margin: '0 auto 2rem',
           borderRadius: '2px'
         }} />
@@ -131,8 +141,8 @@ function App() {
           lineHeight: '1.15',
           margin: '0 0 2rem',
           whiteSpace: 'pre',
-          color: '#5c4033',
-          textShadow: '0 2px 8px rgba(92,64,51,0.15)',
+          color: '#2d5c2d',
+          textShadow: '0 2px 8px rgba(45,92,45,0.15)',
           letterSpacing: '0.05em',
           fontWeight: 'bold'
         }}>
@@ -143,7 +153,7 @@ function App() {
           fontSize: '1.5rem',
           margin: '0 0 1rem',
           fontWeight: 400,
-          color: '#5c4033',
+          color: '#2d5c2d',
           letterSpacing: '0.05em'
         }}>
           Kudikala Family Page
@@ -154,21 +164,21 @@ function App() {
             fontSize: '1.1rem',
             margin: '0 0 0.5rem',
             fontWeight: 300,
-            color: '#5c4033',
+            color: '#2d5c2d',
             opacity: 0.8,
             fontStyle: 'italic',
             lineHeight: '1.6'
           }}>
-            {randomQuote.telugu}
+            {current.telugu}
           </p>
           <p style={{
             fontSize: '0.9rem',
             margin: 0,
             fontWeight: 300,
-            color: '#5c4033',
+            color: '#2d5c2d',
             opacity: 0.55
           }}>
-            {randomQuote.english}
+            {current.english}
           </p>
         </div>
 
@@ -179,7 +189,7 @@ function App() {
             alignItems: 'center',
             gap: '8px',
             padding: '14px 36px',
-            background: 'linear-gradient(135deg, #d4a574, #c4956a)',
+            background: 'linear-gradient(135deg, #6aab6a, #4a8a4a)',
             border: 'none',
             borderRadius: '12px',
             color: 'white',
@@ -188,16 +198,16 @@ function App() {
             fontWeight: 500,
             letterSpacing: '0.05em',
             transition: 'all 0.3s ease',
-            boxShadow: '0 4px 15px rgba(196,149,106,0.3)',
+            boxShadow: '0 4px 15px rgba(74,138,74,0.3)',
             cursor: 'pointer'
           }}
           onMouseEnter={function(e) {
             e.target.style.transform = 'translateY(-3px)';
-            e.target.style.boxShadow = '0 6px 20px rgba(196,149,106,0.4)';
+            e.target.style.boxShadow = '0 6px 20px rgba(74,138,74,0.4)';
           }}
           onMouseLeave={function(e) {
             e.target.style.transform = 'translateY(0)';
-            e.target.style.boxShadow = '0 4px 15px rgba(196,149,106,0.3)';
+            e.target.style.boxShadow = '0 4px 15px rgba(74,138,74,0.3)';
           }}
         >
           <span>Family Application Portal</span>
